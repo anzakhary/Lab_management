@@ -1,0 +1,656 @@
+2026-09-21 12:43:40,562 INFO REQUEST GET /
+2026-09-21 12:43:41,084 INFO Preparing to send email to test@example.com | Subject: Test email
+2026-09-21 12:43:41,084 INFO [EMAIL] To: test@example.com
+Subject: Test email
+Hello from logger test
+
+2026-09-21 12:43:51,674 INFO REQUEST GET /
+2026-09-21 12:43:53,081 INFO REQUEST GET /static/styles.css
+2026-09-21 12:44:03,504 INFO REQUEST POST /borrow
+2026-09-21 12:44:03,740 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 12:44:03,741 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Submitted
+Hello andrew,
+
+Your request for 1 of Ethernet Cables has been submitted and is awaiting admin approval.
+Return date: 2026-10-09
+
+
+2026-09-21 12:44:03,774 INFO REQUEST GET /
+2026-09-21 12:44:04,688 INFO REQUEST GET /static/styles.css
+2026-09-21 12:56:12,318 INFO REQUEST POST /borrow
+2026-09-21 12:56:12,617 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 12:56:12,617 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Submitted
+Hello andrew,
+
+Your request for 1 of Dell Laptops has been submitted and is awaiting admin approval.
+Return date: 2026-10-10
+
+
+2026-09-21 12:56:12,661 INFO REQUEST GET /
+2026-09-21 12:56:13,576 INFO REQUEST GET /static/styles.css
+2026-09-21 12:57:41,993 INFO REQUEST GET /
+2026-09-21 12:57:42,795 INFO REQUEST GET /static/styles.css
+2026-09-21 12:57:44,961 INFO REQUEST GET /
+2026-09-21 12:57:45,578 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:03,358 INFO REQUEST GET /
+2026-09-21 12:58:04,337 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:05,182 INFO REQUEST GET /admin
+2026-09-21 12:58:05,326 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:07,515 INFO REQUEST POST /admin/reject/req-2
+2026-09-21 12:58:07,526 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 12:58:07,526 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello sadasd,
+
+Your request for Wired Keyboard HP H3CS3AA DE has been rejected by the admin.
+
+
+2026-09-21 12:58:07,548 INFO REQUEST GET /admin
+2026-09-21 12:58:07,756 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:08,389 INFO REQUEST POST /admin/reject/req-3
+2026-09-21 12:58:08,401 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 12:58:08,401 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello sadasd,
+
+Your request for Dell Laptops has been rejected by the admin.
+
+
+2026-09-21 12:58:08,456 INFO REQUEST GET /admin
+2026-09-21 12:58:08,626 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:09,088 INFO REQUEST POST /admin/reject/req-4
+2026-09-21 12:58:09,101 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 12:58:09,102 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello andrew,
+
+Your request for Ethernet Cables has been rejected by the admin.
+
+
+2026-09-21 12:58:09,142 INFO REQUEST GET /admin
+2026-09-21 12:58:09,408 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:09,868 INFO REQUEST POST /admin/reject/req-5
+2026-09-21 12:58:09,882 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 12:58:09,883 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello andrew,
+
+Your request for Dell Laptops has been rejected by the admin.
+
+
+2026-09-21 12:58:09,913 INFO REQUEST GET /admin
+2026-09-21 12:58:10,179 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:15,885 INFO REQUEST GET /
+2026-09-21 12:58:16,994 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:17,383 INFO REQUEST GET /admin
+2026-09-21 12:58:17,496 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:18,230 INFO REQUEST GET /
+2026-09-21 12:58:18,910 INFO REQUEST GET /static/styles.css
+2026-09-21 12:58:26,953 INFO REQUEST POST /borrow
+2026-09-21 12:58:27,547 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 12:58:27,548 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Submitted
+Hello sadasd,
+
+Your request for 1 of USB Type B 2.0 has been submitted and is awaiting admin approval.
+Return date: 2026-10-10
+
+
+2026-09-21 12:58:27,604 INFO REQUEST GET /
+2026-09-21 12:58:29,081 INFO REQUEST GET /static/styles.css
+2026-09-21 13:00:23,737 INFO REQUEST GET /
+2026-09-21 13:00:35,257 INFO REQUEST POST /borrow
+2026-09-21 13:00:36,068 INFO Preparing to send email to andrew.zakhary@hshl.de | Subject: Borrow Request Submitted
+2026-09-21 13:00:36,069 INFO [EMAIL] To: andrew.zakhary@hshl.de
+Subject: Borrow Request Submitted
+Hello fdgsg,
+
+Your request for 1 of Wired Keyboard Fujitsu KB 410 C DE has been submitted and is awaiting admin approval.
+Return date: 2026-10-10
+
+
+2026-09-21 13:00:36,101 INFO REQUEST GET /
+2026-09-21 13:00:37,846 INFO REQUEST GET /static/styles.css
+2026-09-21 13:03:26,143 INFO REQUEST GET /
+2026-09-21 13:03:27,092 INFO REQUEST GET /static/styles.css
+2026-09-21 13:03:35,397 INFO REQUEST POST /borrow
+2026-09-21 13:03:35,683 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:03:35,684 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Submitted
+Hello sadasd,
+
+Your request for 1 of Wired Keyboard DELL KB216t DE has been submitted and is awaiting admin approval.
+Return date: 2026-10-11
+
+
+2026-09-21 13:03:35,708 INFO REQUEST GET /
+2026-09-21 13:03:37,116 INFO REQUEST GET /static/styles.css
+2026-09-21 13:04:34,449 INFO Preparing to send email to lab_management@outlook.com | Subject: SMTP validation
+2026-09-21 13:04:34,450 INFO [EMAIL] To: lab_management@outlook.com
+Subject: SMTP validation
+This is a test from Flask.
+
+2026-09-21 13:06:48,791 INFO REQUEST GET /
+2026-09-21 13:06:49,522 INFO REQUEST GET /static/styles.css
+2026-09-21 13:07:14,407 INFO REQUEST GET /
+2026-09-21 13:07:16,335 INFO REQUEST GET /static/styles.css
+2026-09-21 13:07:26,180 INFO REQUEST POST /borrow
+2026-09-21 13:07:26,514 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:07:26,514 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Submitted
+Hello abaaa,
+
+Your request for 1 of Varta CR20250 Lithum Cell 3v battery has been submitted and is awaiting admin approval.
+Return date: 2026-10-05
+
+
+2026-09-21 13:07:26,548 INFO REQUEST GET /
+2026-09-21 13:07:27,705 INFO REQUEST GET /static/styles.css
+2026-09-21 13:09:39,398 INFO REQUEST POST /borrow
+2026-09-21 13:09:39,832 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:09:39,832 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Submitted
+Hello andrew,
+
+Your request for 1 of 3.5 mm Jack has been submitted and is awaiting admin approval.
+Return date: 2026-10-11
+
+
+2026-09-21 13:09:39,863 INFO REQUEST GET /
+2026-09-21 13:09:41,115 INFO REQUEST GET /static/styles.css
+2026-09-21 13:13:14,307 INFO REQUEST POST /borrow
+2026-09-21 13:13:14,570 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:13:20,322 ERROR Email failed for andreantwa61@gmail.com | Subject: Borrow Request Submitted
+Traceback (most recent call last):
+  File "C:\Users\zakhary\Desktop\Lab_Management\app.py", line 204, in send_email
+    server.login(MAIL_USERNAME, MAIL_PASSWORD)
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 750, in login
+    raise last_exception
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.139 Authentication unsuccessful, SmtpClientAuthentication is disabled for the Mailbox. Visit https://aka.ms/smtp_auth_disabled for more information. [BE1P281CA0490.DEUP281.PROD.OUTLOOK.COM 2026-09-21T11:13:20.287Z 08DF16D9E9DAB615]')
+2026-09-21 13:13:20,362 INFO REQUEST GET /
+2026-09-21 13:13:21,667 INFO REQUEST GET /static/styles.css
+2026-09-21 13:32:31,139 INFO REQUEST GET /
+2026-09-21 13:32:31,896 INFO REQUEST GET /static/styles.css
+2026-09-21 13:32:34,846 INFO REQUEST GET /
+2026-09-21 13:32:35,695 INFO REQUEST GET /static/styles.css
+2026-09-21 13:32:43,553 INFO REQUEST POST /borrow
+2026-09-21 13:32:43,914 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:32:49,264 ERROR Email failed for andreantwa61@gmail.com | Subject: Borrow Request Submitted
+Traceback (most recent call last):
+  File "C:\Users\zakhary\Desktop\Lab_Management\app.py", line 204, in send_email
+    server.login(MAIL_USERNAME, MAIL_PASSWORD)
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 750, in login
+    raise last_exception
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.139 Authentication unsuccessful, SmtpClientAuthentication is disabled for the Mailbox. Visit https://aka.ms/smtp_auth_disabled for more information. [FR4P281CA0090.DEUP281.PROD.OUTLOOK.COM 2026-09-21T11:32:49.231Z 08DF16F1CEE5EC5C]')
+2026-09-21 13:32:49,289 INFO REQUEST GET /
+2026-09-21 13:32:49,935 INFO REQUEST GET /static/styles.css
+2026-09-21 13:35:17,109 INFO REQUEST POST /borrow
+2026-09-21 13:35:17,317 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:35:22,757 ERROR Email failed for andreantwa61@gmail.com | Subject: Borrow Request Submitted
+Traceback (most recent call last):
+  File "C:\Users\zakhary\Desktop\Lab_Management\app.py", line 204, in send_email
+    server.login(MAIL_USERNAME, MAIL_PASSWORD)
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 750, in login
+    raise last_exception
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.139 Authentication unsuccessful, SmtpClientAuthentication is disabled for the Mailbox. Visit https://aka.ms/smtp_auth_disabled for more information. [BE1P281CA0293.DEUP281.PROD.OUTLOOK.COM 2026-09-21T11:35:22.721Z 08DF16BADEC97848]')
+2026-09-21 13:35:22,779 INFO REQUEST GET /
+2026-09-21 13:35:23,314 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:15,374 INFO REQUEST GET /
+2026-09-21 13:44:15,904 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:16,670 INFO REQUEST GET /
+2026-09-21 13:44:17,377 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:17,897 INFO REQUEST GET /admin
+2026-09-21 13:44:18,117 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:19,307 INFO REQUEST POST /admin/reject/req-1
+2026-09-21 13:44:19,320 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 13:44:19,320 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello abaaa,
+
+Your request for Varta CR20250 Lithum Cell 3v battery has been rejected by the admin.
+
+
+2026-09-21 13:44:19,376 INFO REQUEST GET /admin
+2026-09-21 13:44:19,639 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:20,195 INFO REQUEST POST /admin/reject/req-2
+2026-09-21 13:44:20,206 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 13:44:20,206 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello andrew,
+
+Your request for 3.5 mm Jack has been rejected by the admin.
+
+
+2026-09-21 13:44:20,232 INFO REQUEST GET /admin
+2026-09-21 13:44:20,464 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:20,913 INFO REQUEST POST /admin/reject/req-3
+2026-09-21 13:44:20,924 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 13:44:20,924 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello sadasd,
+
+Your request for Wired Keyboard DELL KB216t DE has been rejected by the admin.
+
+
+2026-09-21 13:44:20,951 INFO REQUEST GET /admin
+2026-09-21 13:44:21,214 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:21,642 INFO REQUEST POST /admin/reject/req-4
+2026-09-21 13:44:21,652 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 13:44:21,653 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello sadasd,
+
+Your request for Dell Laptops has been rejected by the admin.
+
+
+2026-09-21 13:44:21,701 INFO REQUEST GET /admin
+2026-09-21 13:44:21,949 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:22,395 INFO REQUEST POST /admin/reject/req-5
+2026-09-21 13:44:22,405 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 13:44:22,405 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Rejected
+Hello abaaa,
+
+Your request for Dell Docking cord has been rejected by the admin.
+
+
+2026-09-21 13:44:22,454 INFO REQUEST GET /admin
+2026-09-21 13:44:22,790 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:37,194 INFO REQUEST GET /
+2026-09-21 13:44:37,783 INFO REQUEST GET /static/styles.css
+2026-09-21 13:44:38,345 INFO REQUEST GET /favicon.ico
+2026-09-21 13:44:38,345 ERROR Unhandled error for GET /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-09-21 13:48:33,544 INFO REQUEST GET /
+2026-09-21 13:48:34,320 INFO REQUEST GET /static/styles.css
+2026-09-21 13:48:34,863 INFO REQUEST GET /favicon.ico
+2026-09-21 13:48:34,863 ERROR Unhandled error for GET /favicon.ico
+Traceback (most recent call last):
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-09-21 13:48:49,325 INFO REQUEST POST /borrow
+2026-09-21 13:48:49,623 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:48:49,623 INFO [EMAIL] To: andreantwa61@gmail.com
+Subject: Borrow Request Submitted
+Hello andrew,
+
+Your request for 1 of Wired Keyboard CHERRY KC 6000 SLIM DE has been submitted and is awaiting admin approval.
+Return date: 2026-10-05
+
+
+2026-09-21 13:48:49,960 INFO REQUEST GET /
+2026-09-21 13:48:50,822 INFO REQUEST GET /static/styles.css
+2026-09-21 13:50:55,695 INFO REQUEST POST /borrow
+2026-09-21 13:50:55,959 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:50:57,140 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:50:57,174 INFO REQUEST GET /
+2026-09-21 13:50:58,391 INFO REQUEST GET /static/styles.css
+2026-09-21 13:51:47,254 INFO REQUEST GET /login
+2026-09-21 13:51:47,710 INFO REQUEST GET /static/styles.css
+2026-09-21 13:51:53,623 INFO REQUEST POST /login
+2026-09-21 13:51:53,966 INFO REQUEST GET /admin
+2026-09-21 13:51:54,232 INFO REQUEST GET /static/styles.css
+2026-09-21 13:52:01,256 INFO REQUEST POST /admin/reject/req-6
+2026-09-21 13:52:01,265 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 13:52:02,803 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 13:52:03,138 INFO REQUEST GET /admin
+2026-09-21 13:52:03,404 INFO REQUEST GET /static/styles.css
+2026-09-21 13:52:04,504 INFO REQUEST POST /admin/approve/req-7
+2026-09-21 13:52:04,943 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Approved
+2026-09-21 13:52:05,981 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Approved
+2026-09-21 13:52:06,326 INFO REQUEST GET /admin
+2026-09-21 13:52:06,579 INFO REQUEST GET /static/styles.css
+2026-09-21 13:54:15,403 INFO REQUEST POST /admin/return/req-7
+2026-09-21 13:54:15,410 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Return Confirmed
+2026-09-21 13:54:16,385 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Return Confirmed
+2026-09-21 13:54:16,428 INFO REQUEST GET /admin/borrowed
+2026-09-21 13:54:16,964 INFO REQUEST GET /static/styles.css
+2026-09-21 13:56:58,648 INFO REQUEST GET /admin/borrowed
+2026-09-21 13:56:58,916 INFO REQUEST GET /static/styles.css
+2026-09-21 13:57:00,245 INFO REQUEST GET /
+2026-09-21 13:57:01,157 INFO REQUEST GET /static/styles.css
+2026-09-21 13:57:31,242 INFO REQUEST POST /borrow
+2026-09-21 13:57:31,503 INFO Preparing to send email to andrew.zakhary@hshl.de | Subject: Borrow Request Submitted
+2026-09-21 13:57:32,465 INFO Email sent successfully to andrew.zakhary@hshl.de | Subject: Borrow Request Submitted
+2026-09-21 13:57:32,792 INFO REQUEST GET /
+2026-09-21 13:57:33,446 INFO REQUEST GET /static/styles.css
+2026-09-21 13:58:08,265 INFO REQUEST POST /borrow
+2026-09-21 13:58:08,542 INFO Preparing to send email to andrewantwanfahmy@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:58:09,550 INFO Email sent successfully to andrewantwanfahmy@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 13:58:09,578 INFO REQUEST GET /
+2026-09-21 13:58:10,709 INFO REQUEST GET /static/styles.css
+2026-09-21 13:59:07,925 INFO REQUEST GET /admin
+2026-09-21 13:59:08,180 INFO REQUEST GET /static/styles.css
+2026-09-21 13:59:11,069 INFO REQUEST POST /admin/approve/req-8
+2026-09-21 13:59:11,342 INFO Preparing to send email to andrew.zakhary@hshl.de | Subject: Borrow Request Approved
+2026-09-21 13:59:12,244 INFO Email sent successfully to andrew.zakhary@hshl.de | Subject: Borrow Request Approved
+2026-09-21 13:59:12,271 INFO REQUEST GET /admin
+2026-09-21 13:59:12,837 INFO REQUEST GET /static/styles.css
+2026-09-21 13:59:13,936 INFO REQUEST POST /admin/approve/req-9
+2026-09-21 13:59:14,320 INFO Preparing to send email to andrewantwanfahmy@gmail.com | Subject: Borrow Request Approved
+2026-09-21 13:59:15,616 INFO Email sent successfully to andrewantwanfahmy@gmail.com | Subject: Borrow Request Approved
+2026-09-21 13:59:15,941 INFO REQUEST GET /admin
+2026-09-21 13:59:16,206 INFO REQUEST GET /static/styles.css
+2026-09-21 14:13:58,910 INFO REQUEST POST /admin/cancel/req-9
+2026-09-21 14:13:58,927 INFO Preparing to send email to andrewantwanfahmy@gmail.com | Subject: Borrow Request Cancelled
+2026-09-21 14:13:59,987 INFO Email sent successfully to andrewantwanfahmy@gmail.com | Subject: Borrow Request Cancelled
+2026-09-21 14:14:00,019 INFO REQUEST GET /admin
+2026-09-21 14:14:00,561 INFO REQUEST GET /static/styles.css
+2026-09-21 14:14:01,813 INFO REQUEST POST /admin/cancel/req-8
+2026-09-21 14:14:01,825 INFO Preparing to send email to andrew.zakhary@hshl.de | Subject: Borrow Request Cancelled
+2026-09-21 14:14:02,658 INFO Email sent successfully to andrew.zakhary@hshl.de | Subject: Borrow Request Cancelled
+2026-09-21 14:14:03,018 INFO REQUEST GET /admin
+2026-09-21 14:14:03,276 INFO REQUEST GET /static/styles.css
+2026-09-21 14:19:13,067 INFO REQUEST GET /
+2026-09-21 14:19:13,976 INFO REQUEST GET /static/styles.css
+2026-09-21 14:19:40,470 INFO REQUEST POST /borrow
+2026-09-21 14:19:40,751 INFO Preparing to send email to andrewantwanfahmy@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 14:19:41,789 INFO Email sent successfully to andrewantwanfahmy@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 14:19:41,809 INFO REQUEST GET /
+2026-09-21 14:19:42,794 INFO REQUEST GET /static/styles.css
+2026-09-21 14:20:32,065 INFO REQUEST GET /
+2026-09-21 14:20:33,448 INFO REQUEST GET /static/styles.css
+2026-09-21 14:20:52,813 INFO REQUEST GET /
+2026-09-21 14:20:54,031 INFO REQUEST GET /static/styles.css
+2026-09-21 14:21:05,910 INFO REQUEST GET /
+2026-09-21 14:21:07,102 INFO REQUEST GET /static/styles.css
+2026-09-21 14:21:59,018 INFO REQUEST GET /
+2026-09-21 14:22:00,721 INFO REQUEST GET /static/styles.css
+2026-09-21 14:22:42,027 INFO REQUEST GET /
+2026-09-21 14:22:43,357 INFO REQUEST GET /static/styles.css
+2026-09-21 14:24:22,013 INFO REQUEST GET /
+2026-09-21 14:24:23,263 INFO REQUEST GET /static/styles.css
+2026-09-21 14:24:33,479 INFO REQUEST GET /
+2026-09-21 14:24:34,272 INFO REQUEST GET /static/styles.css
+2026-09-21 14:24:35,342 INFO REQUEST GET /
+2026-09-21 14:24:36,214 INFO REQUEST GET /static/styles.css
+2026-09-21 14:24:39,570 INFO REQUEST GET /
+2026-09-21 14:24:40,371 INFO REQUEST GET /static/styles.css
+2026-09-21 14:24:41,868 INFO REQUEST GET /
+2026-09-21 14:24:42,740 INFO REQUEST GET /static/styles.css
+2026-09-21 14:29:11,404 INFO REQUEST GET /
+2026-09-21 14:29:12,680 INFO REQUEST GET /static/styles.css
+2026-09-21 14:29:14,336 INFO REQUEST GET /
+2026-09-21 14:29:16,352 INFO REQUEST GET /
+2026-09-21 14:29:18,005 INFO REQUEST GET /static/styles.css
+2026-09-21 14:29:28,121 INFO REQUEST GET /
+2026-09-21 14:29:33,552 INFO REQUEST GET /
+2026-09-21 14:29:35,405 INFO REQUEST GET /static/styles.css
+2026-09-21 14:29:38,408 INFO REQUEST GET /
+2026-09-21 14:29:39,786 INFO REQUEST GET /static/styles.css
+2026-09-21 14:29:40,366 INFO REQUEST GET /
+2026-09-21 14:29:44,569 INFO REQUEST GET /
+2026-09-21 14:29:45,893 INFO REQUEST GET /static/styles.css
+2026-09-21 14:29:49,696 INFO REQUEST GET /
+2026-09-21 14:29:50,951 INFO REQUEST GET /static/styles.css
+2026-09-21 14:29:58,750 INFO REQUEST GET /
+2026-09-21 14:29:59,822 INFO REQUEST GET /static/styles.css
+2026-09-21 14:31:36,889 INFO REQUEST POST /borrow
+2026-09-21 14:31:37,086 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 14:31:38,339 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 14:31:38,365 INFO REQUEST GET /
+2026-09-21 14:31:39,510 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:14,892 INFO REQUEST POST /borrow
+2026-09-21 14:32:15,254 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 14:32:16,155 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 14:32:16,488 INFO REQUEST GET /
+2026-09-21 14:32:17,239 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:27,821 INFO REQUEST POST /borrow
+2026-09-21 14:32:28,086 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 14:32:29,147 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Submitted
+2026-09-21 14:32:29,173 INFO REQUEST GET /
+2026-09-21 14:32:30,134 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:30,700 INFO REQUEST GET /admin
+2026-09-21 14:32:31,230 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:33,270 INFO REQUEST POST /admin/approve/req-10
+2026-09-21 14:32:33,504 INFO Preparing to send email to andrewantwanfahmy@gmail.com | Subject: Borrow Request Approved
+2026-09-21 14:32:34,577 INFO Email sent successfully to andrewantwanfahmy@gmail.com | Subject: Borrow Request Approved
+2026-09-21 14:32:34,915 INFO REQUEST GET /admin
+2026-09-21 14:32:35,149 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:36,372 INFO REQUEST POST /admin/approve/req-12
+2026-09-21 14:32:36,742 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Approved
+2026-09-21 14:32:37,781 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Approved
+2026-09-21 14:32:38,115 INFO REQUEST GET /admin
+2026-09-21 14:32:38,365 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:41,991 INFO REQUEST POST /admin/approve/req-13
+2026-09-21 14:32:42,578 INFO REQUEST GET /admin
+2026-09-21 14:32:42,846 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:47,877 INFO REQUEST POST /admin/approve/req-11
+2026-09-21 14:32:48,072 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Approved
+2026-09-21 14:32:49,120 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Approved
+2026-09-21 14:32:49,459 INFO REQUEST GET /admin
+2026-09-21 14:32:49,726 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:51,853 INFO REQUEST GET /
+2026-09-21 14:32:52,782 INFO REQUEST GET /static/styles.css
+2026-09-21 14:32:55,558 INFO REQUEST GET /admin
+2026-09-21 14:32:56,030 INFO REQUEST GET /static/styles.css
+2026-09-21 14:34:31,673 INFO REQUEST GET /
+2026-09-21 14:35:06,342 INFO REQUEST GET /
+2026-09-21 14:35:07,160 INFO REQUEST GET /static/styles.css
+2026-09-21 14:35:13,866 INFO REQUEST GET /
+2026-09-21 14:35:14,588 INFO REQUEST GET /static/styles.css
+2026-09-21 14:35:15,971 INFO REQUEST GET /
+2026-09-21 14:35:16,712 INFO REQUEST GET /static/styles.css
+2026-09-21 14:35:17,722 INFO REQUEST GET /
+2026-09-21 14:35:18,333 INFO REQUEST GET /static/styles.css
+2026-09-21 14:39:23,363 INFO REQUEST GET /admin
+2026-09-21 14:39:23,618 INFO REQUEST GET /static/styles.css
+2026-09-21 14:42:51,165 INFO REQUEST GET /
+2026-09-21 14:42:51,952 INFO REQUEST GET /static/styles.css
+2026-09-21 14:43:17,541 INFO REQUEST GET /
+2026-09-21 14:43:18,799 INFO REQUEST GET /static/styles.css
+2026-09-21 14:43:19,113 INFO REQUEST GET /industrial-robot-factory-svgrepo-com.svg
+2026-09-21 14:43:19,113 ERROR Unhandled error for GET /industrial-robot-factory-svgrepo-com.svg
+Traceback (most recent call last):
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\zakhary\AppData\Local\miniconda3\envs\ML\Lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2026-09-21 14:43:26,759 INFO REQUEST GET /
+2026-09-21 14:43:28,541 INFO REQUEST GET /static/styles.css
+2026-09-21 14:43:28,604 INFO REQUEST GET /
+2026-09-21 14:43:28,868 INFO REQUEST GET /logo.svg
+2026-09-21 14:43:29,937 INFO REQUEST GET /logo.svg
+2026-09-21 14:43:38,231 INFO REQUEST GET /
+2026-09-21 14:43:38,947 INFO REQUEST GET /static/styles.css
+2026-09-21 14:43:39,267 INFO REQUEST GET /logo.svg
+2026-09-21 14:43:43,838 INFO REQUEST GET /
+2026-09-21 14:43:45,056 INFO REQUEST GET /static/styles.css
+2026-09-21 14:43:45,379 INFO REQUEST GET /logo.svg
+2026-09-21 14:43:51,375 INFO REQUEST GET /
+2026-09-21 14:43:52,184 INFO REQUEST GET /static/styles.css
+2026-09-21 14:43:52,520 INFO REQUEST GET /logo.svg
+2026-09-21 14:44:29,604 INFO REQUEST GET /admin
+2026-09-21 14:44:29,870 INFO REQUEST GET /static/styles.css
+2026-09-21 14:44:31,422 INFO REQUEST GET /admin/borrowed
+2026-09-21 14:44:31,932 INFO REQUEST GET /static/styles.css
+2026-09-21 14:44:33,090 INFO REQUEST GET /
+2026-09-21 14:44:34,112 INFO REQUEST GET /static/styles.css
+2026-09-21 14:44:34,116 INFO REQUEST GET /logo.svg
+2026-09-21 14:44:34,997 INFO REQUEST GET /admin
+2026-09-21 14:44:35,498 INFO REQUEST GET /static/styles.css
+2026-09-21 14:44:38,861 INFO REQUEST GET /admin/borrowed
+2026-09-21 14:44:39,346 INFO REQUEST GET /static/styles.css
+2026-09-21 14:44:41,055 INFO REQUEST GET /admin
+2026-09-21 14:44:41,557 INFO REQUEST GET /static/styles.css
+2026-09-21 14:44:41,593 INFO REQUEST GET /
+2026-09-21 14:44:57,451 INFO REQUEST GET /admin
+2026-09-21 14:44:57,906 INFO REQUEST GET /static/styles.css
+2026-09-21 14:44:59,880 INFO REQUEST GET /
+2026-09-21 14:45:00,874 INFO REQUEST GET /static/styles.css
+2026-09-21 14:45:00,876 INFO REQUEST GET /logo.svg
+2026-09-21 14:45:03,558 INFO REQUEST GET /
+2026-09-21 14:45:04,571 INFO REQUEST GET /static/styles.css
+2026-09-21 14:45:04,573 INFO REQUEST GET /logo.svg
+2026-09-21 14:45:38,220 INFO REQUEST GET /
+2026-09-21 14:45:39,474 INFO REQUEST GET /static/styles.css
+2026-09-21 14:45:39,490 INFO REQUEST GET /logo.svg
+2026-09-21 14:45:45,019 INFO REQUEST GET /
+2026-09-21 14:45:47,059 INFO REQUEST GET /static/styles.css
+2026-09-21 14:45:47,063 INFO REQUEST GET /logo.svg
+2026-09-21 14:45:50,128 INFO REQUEST GET /
+2026-09-21 14:45:50,446 INFO REQUEST GET /
+2026-09-21 14:45:52,207 INFO REQUEST GET /admin
+2026-09-21 14:45:52,689 INFO REQUEST GET /static/styles.css
+2026-09-21 14:45:53,013 INFO REQUEST GET /logo.svg
+2026-09-21 14:45:53,716 INFO REQUEST GET /login
+2026-09-21 14:45:53,803 INFO REQUEST GET /admin
+2026-09-21 14:45:53,821 INFO REQUEST GET /login
+2026-09-21 14:45:55,735 INFO REQUEST GET /admin/borrowed
+2026-09-21 14:45:56,012 INFO REQUEST GET /static/styles.css
+2026-09-21 14:45:58,285 INFO REQUEST GET /admin
+2026-09-21 14:45:58,541 INFO REQUEST GET /static/styles.css
+2026-09-21 14:45:58,858 INFO REQUEST GET /logo.svg
+2026-09-21 14:45:59,407 INFO REQUEST GET /
+2026-09-21 14:45:59,806 INFO REQUEST GET /
+2026-09-21 14:46:02,541 INFO REQUEST GET /login
+2026-09-21 14:46:02,635 INFO REQUEST GET /admin
+2026-09-21 14:46:02,691 INFO REQUEST GET /login
+2026-09-21 14:46:02,714 INFO REQUEST GET /
+2026-09-21 14:46:05,366 INFO REQUEST GET /static/styles.css
+2026-09-21 14:46:05,375 INFO REQUEST GET /logo.svg
+2026-09-21 14:46:08,217 INFO REQUEST GET /admin
+2026-09-21 14:46:08,783 INFO REQUEST GET /static/styles.css
+2026-09-21 14:46:08,787 INFO REQUEST GET /logo.svg
+2026-09-21 14:46:10,841 INFO REQUEST GET /admin/borrowed
+2026-09-21 14:46:11,491 INFO REQUEST GET /static/styles.css
+2026-09-21 14:46:20,781 INFO REQUEST GET /
+2026-09-21 14:46:22,487 INFO REQUEST GET /static/styles.css
+2026-09-21 14:46:22,489 INFO REQUEST GET /logo.svg
+2026-09-21 14:46:48,012 INFO REQUEST GET /
+2026-09-21 14:46:49,693 INFO REQUEST GET /static/styles.css
+2026-09-21 14:46:49,709 INFO REQUEST GET /logo.svg
+2026-09-21 14:46:51,648 INFO REQUEST GET /
+2026-09-21 14:46:53,245 INFO REQUEST GET /static/styles.css
+2026-09-21 14:46:53,260 INFO REQUEST GET /logo.svg
+2026-09-21 15:00:41,226 INFO REQUEST GET /
+2026-09-21 15:00:41,967 INFO REQUEST GET /static/styles.css
+2026-09-21 15:00:41,968 INFO REQUEST GET /logo.svg
+2026-09-21 15:00:43,976 INFO REQUEST GET /login
+2026-09-21 15:00:44,191 INFO REQUEST GET /static/styles.css
+2026-09-21 15:00:44,194 INFO REQUEST GET /logo.svg
+2026-09-21 15:00:48,861 INFO REQUEST POST /login
+2026-09-21 15:00:49,018 INFO REQUEST GET /static/styles.css
+2026-09-21 15:00:49,028 INFO REQUEST GET /logo.svg
+2026-09-21 15:00:57,400 INFO REQUEST POST /login
+2026-09-21 15:00:57,593 INFO REQUEST GET /static/styles.css
+2026-09-21 15:00:57,597 INFO REQUEST GET /logo.svg
+2026-09-21 15:01:05,719 INFO REQUEST POST /login
+2026-09-21 15:01:05,834 INFO REQUEST GET /static/styles.css
+2026-09-21 15:01:05,849 INFO REQUEST GET /logo.svg
+2026-09-21 15:01:21,972 INFO REQUEST POST /login
+2026-09-21 15:01:22,104 INFO REQUEST GET /static/styles.css
+2026-09-21 15:01:22,118 INFO REQUEST GET /logo.svg
+2026-09-21 15:02:48,808 INFO REQUEST POST /login
+2026-09-21 15:02:48,947 INFO REQUEST GET /static/styles.css
+2026-09-21 15:02:48,950 INFO REQUEST GET /logo.svg
+2026-09-21 15:02:55,743 INFO REQUEST POST /login
+2026-09-21 15:02:55,909 INFO REQUEST GET /static/styles.css
+2026-09-21 15:02:55,926 INFO REQUEST GET /logo.svg
+2026-09-21 15:03:45,710 INFO REQUEST POST /login
+2026-09-21 15:03:45,910 INFO REQUEST GET /static/styles.css
+2026-09-21 15:03:45,913 INFO REQUEST GET /logo.svg
+2026-09-21 15:04:13,457 INFO REQUEST POST /login
+2026-09-21 15:04:13,603 INFO REQUEST GET /static/styles.css
+2026-09-21 15:04:13,620 INFO REQUEST GET /logo.svg
+2026-09-21 15:04:21,500 INFO REQUEST POST /login
+2026-09-21 15:04:21,650 INFO REQUEST GET /static/styles.css
+2026-09-21 15:04:21,656 INFO REQUEST GET /logo.svg
+2026-09-21 15:04:24,752 INFO REQUEST GET /
+2026-09-21 15:04:25,422 INFO REQUEST GET /static/styles.css
+2026-09-21 15:04:25,425 INFO REQUEST GET /logo.svg
+2026-09-21 15:05:54,444 INFO REQUEST GET /
+2026-09-21 15:05:55,485 INFO REQUEST GET /static/styles.css
+2026-09-21 15:05:55,497 INFO REQUEST GET /logo.svg
+2026-09-21 15:05:56,728 INFO REQUEST GET /login
+2026-09-21 15:05:56,940 INFO REQUEST GET /static/styles.css
+2026-09-21 15:05:56,943 INFO REQUEST GET /logo.svg
+2026-09-21 15:06:05,481 INFO REQUEST POST /login
+2026-09-21 15:06:05,709 INFO REQUEST GET /static/styles.css
+2026-09-21 15:06:05,710 INFO REQUEST GET /logo.svg
+2026-09-21 15:07:49,333 INFO REQUEST GET /
+2026-09-21 15:07:49,842 INFO REQUEST GET /static/styles.css
+2026-09-21 15:07:49,844 INFO REQUEST GET /logo.svg
+2026-09-21 15:07:51,545 INFO REQUEST GET /login
+2026-09-21 15:07:51,698 INFO REQUEST GET /static/styles.css
+2026-09-21 15:07:51,715 INFO REQUEST GET /logo.svg
+2026-09-21 15:08:01,203 INFO REQUEST POST /login
+2026-09-21 15:08:01,412 INFO REQUEST GET /admin
+2026-09-21 15:08:01,582 INFO REQUEST GET /static/styles.css
+2026-09-21 15:08:01,584 INFO REQUEST GET /logo.svg
+2026-09-21 15:08:41,738 INFO REQUEST POST /admin/reject/req-13
+2026-09-21 15:08:41,748 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 15:08:43,232 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Rejected
+2026-09-21 15:08:43,261 INFO REQUEST GET /admin
+2026-09-21 15:08:43,454 INFO REQUEST GET /static/styles.css
+2026-09-21 15:08:43,488 INFO REQUEST GET /logo.svg
+2026-09-21 15:08:45,758 INFO REQUEST POST /admin/cancel/req-10
+2026-09-21 15:08:45,768 INFO Preparing to send email to andrewantwanfahmy@gmail.com | Subject: Borrow Request Cancelled
+2026-09-21 15:08:46,701 INFO Email sent successfully to andrewantwanfahmy@gmail.com | Subject: Borrow Request Cancelled
+2026-09-21 15:08:46,732 INFO REQUEST GET /admin
+2026-09-21 15:08:47,039 INFO REQUEST GET /static/styles.css
+2026-09-21 15:08:47,062 INFO REQUEST GET /logo.svg
+2026-09-21 15:08:47,666 INFO REQUEST POST /admin/return/req-11
+2026-09-21 15:08:47,669 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Return Confirmed
+2026-09-21 15:08:48,685 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Return Confirmed
+2026-09-21 15:08:48,752 INFO REQUEST GET /admin/borrowed
+2026-09-21 15:08:49,099 INFO REQUEST GET /static/styles.css
+2026-09-21 15:08:50,150 INFO REQUEST POST /admin/cancel/req-12
+2026-09-21 15:08:50,164 INFO Preparing to send email to andreantwa61@gmail.com | Subject: Borrow Request Cancelled
+2026-09-21 15:08:51,460 INFO Email sent successfully to andreantwa61@gmail.com | Subject: Borrow Request Cancelled
+2026-09-21 15:08:51,519 INFO REQUEST GET /admin
+2026-09-21 15:08:51,826 INFO REQUEST GET /static/styles.css
+2026-09-21 15:08:51,835 INFO REQUEST GET /logo.svg
