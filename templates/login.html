@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <a class="brand-link" href="{{ url_for('index') }}" aria-label="Go to home page">
+          <img class="brand-mark" src="{{ url_for('serve_logo') }}" alt="Lab Inventory logo" />
+        </a>
+        <h1>Admin Access</h1>
+      </div>
+      <a class="admin-link" href="/">Back to inventory</a>
+    </header>
+
+    <main class="auth-layout">
+      <section class="panel auth-panel">
+        <h2>Sign in</h2>
+        {% if error %}
+        <div class="error-box">{{ error }}</div>
+        {% endif %}
+
+        <form method="post" action="/login">
+          <label>
+            Username
+            <input type="text" name="username" placeholder="admin" required />
+          </label>
+
+          <label>
+            Password
+            <input type="password" name="password" placeholder="Enter password" required />
+          </label>
+
+          <button type="submit">Log in</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

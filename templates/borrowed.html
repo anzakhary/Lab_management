@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Borrowed Items</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header class="topbar admin-topbar">
+      <div>
+        <h1>Borrowed Items</h1>
+        <p>Admin-only view of current and returned borrow records.</p>
+      </div>
+      <div class="top-actions">
+        <a class="admin-link" href="/admin">Admin dashboard</a>
+        <a class="admin-link" href="/">Back to inventory</a>
+        <a class="admin-link logout-link" href="/logout">Logout</a>
+      </div>
+    </header>
+
+    <main class="admin-layout">
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Active Borrowed Items</h2>
+        </div>
+
+        {% if approved %}
+        <div class="request-list">
+          {% for request in approved %}
+          <div class="request-card approved-card">
+            <div>
+              <h3>{{ request.item_name }} ({{ request.qty }})</h3>
+              <p><strong>Borrower:</strong> {{ request.borrower_name }}</p>
+              <p><strong>Email:</strong> {{ request.borrower_email or 'Not provided' }}</p>
+              <p><strong>Location:</strong> {{ request.location }}</p>
+              <p><strong>Approved:</strong> {{ request.approved_at }}</p>
+              <p><strong>Return by:</strong> {{ request.return_date or 'Not set' }}</p>
+            </div>
+            <div class="request-actions">
+              <form method="post" action="{{ url_for('return_request', request_id=request.id) }}">
+                <button type="submit" class="approve-btn">Returned</button>
+              </form>
+              <form method="post" action="{{ url_for('cancel_request', request_id=request.id) }}">
+                <button type="submit" class="reject-btn">Cancel</button>
+              </form>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">No currently borrowed items.</p>
+        {% endif %}
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Returned Items</h2>
+        </div>
+
+        {% if returned %}
+        <div class="request-list">
+          {% for request in returned %}
+          <div class="request-card">
+            <div>
+              <h3>{{ request.item_name }} ({{ request.qty }})</h3>
+              <p><strong>Borrower:</strong> {{ request.borrower_name }}</p>
+              <p><strong>Email:</strong> {{ request.borrower_email or 'Not provided' }}</p>
+              <p><strong>Returned on:</strong> {{ request.returned_at }}</p>
+              <p><strong>Return by:</strong> {{ request.return_date or 'Not set' }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">No returned items recorded.</p>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>

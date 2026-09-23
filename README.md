@@ -21,3 +21,15 @@ This project reads the lab inventory workbook and renders a simple web interface
 
 4. Open the admin page:
    http://127.0.0.1:5000/admin
+
+## Deploy to Render
+
+This project is set up for a standard Render Python web service.
+
+1. Push the repository to GitHub.
+2. In Render, create a new Web Service and connect the repo.
+3. Use the default Python environment, or keep the included render.yaml file to configure the service.
+4. Render will run the app with:
+   gunicorn app:app --bind 0.0.0.0:$PORT
+
+The service automatically uses the generated secret key and secure session cookie settings for HTTPS deployments.

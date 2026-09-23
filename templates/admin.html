@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header class="topbar admin-topbar">
+      <div class="brand-wrap">
+        <a class="brand-link" href="{{ url_for('index') }}" aria-label="Go to home page">
+          <img class="brand-mark" src="{{ url_for('serve_logo') }}" alt="Lab Inventory logo" />
+        </a>
+        <h1>Admin Borrow Approvals</h1>
+      </div>
+      <div class="top-actions">
+        <a class="admin-link" href="/">Back to inventory</a>
+        <a class="admin-link" href="/admin/borrowed">Borrowed items</a>
+        <a class="admin-link logout-link" href="/logout">Logout</a>
+      </div>
+    </header>
+
+    <main class="admin-layout">
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Pending Requests</h2>
+        </div>
+
+        {% if admin_error %}
+        <div class="error-box">{{ admin_error }}</div>
+        {% endif %}
+
+        {% if pending %}
+        <div class="request-list">
+          {% for request in pending %}
+          <div class="request-card">
+            <div>
+              <h3>{{ request.item_name }} ({{ request.qty }})</h3>
+              <p><strong>Borrower:</strong> {{ request.borrower_name }}</p>
+              <p><strong>Email:</strong> {{ request.borrower_email or 'Not provided' }}</p>
+              <p><strong>Location:</strong> {{ request.location }}</p>
+              <p><strong>Submitted:</strong> {{ request.submitted_at }}</p>
+              <p><strong>Return by:</strong> {{ request.return_date or 'Not set' }}</p>
+              {% if request.purpose %}
+              <p><strong>Purpose:</strong> {{ request.purpose }}</p>
+              {% endif %}
+            </div>
+            <div class="request-actions">
+              <form method="post" action="{{ url_for('approve_request', request_id=request.id) }}">
+                <button type="submit" class="approve-btn">Approve</button>
+              </form>
+              <form method="post" action="{{ url_for('reject_request', request_id=request.id) }}">
+                <button type="submit" class="reject-btn">Reject</button>
+              </form>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">There are no pending borrow requests.</p>
+        {% endif %}
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Approved Borrow Records</h2>
+        </div>
+
+        {% if approved %}
+        <div class="request-list">
+          {% for request in approved %}
+          <div class="request-card approved-card">
+            <div>
+              <h3>{{ request.item_name }} ({{ request.qty }})</h3>
+              <p><strong>Borrower:</strong> {{ request.borrower_name }}</p>
+              <p><strong>Email:</strong> {{ request.borrower_email or 'Not provided' }}</p>
+              <p><strong>Approved:</strong> {{ request.approved_at }}</p>
+              <p><strong>Return by:</strong> {{ request.return_date or 'Not set' }}</p>
+            </div>
+            <div class="request-actions">
+              <form method="post" action="{{ url_for('return_request', request_id=request.id) }}">
+                <button type="submit" class="approve-btn">Returned</button>
+              </form>
+              <form method="post" action="{{ url_for('cancel_request', request_id=request.id) }}">
+                <button type="submit" class="reject-btn">Cancel</button>
+              </form>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">No approved borrow records yet.</p>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>

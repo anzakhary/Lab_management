@@ -654,3 +654,6 @@ werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on 
 2026-09-21 15:08:51,519 INFO REQUEST GET /admin
 2026-09-21 15:08:51,826 INFO REQUEST GET /static/styles.css
 2026-09-21 15:08:51,835 INFO REQUEST GET /logo.svg
+2026-09-21 15:34:19,166 INFO REQUEST GET /
+2026-09-21 15:34:20,296 INFO REQUEST GET /static/styles.css
+2026-09-21 15:34:20,298 INFO REQUEST GET /logo.svg

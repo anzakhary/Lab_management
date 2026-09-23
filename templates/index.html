@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab Inventory Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-wrap">
+        <a class="brand-link" href="{{ url_for('index') }}" aria-label="Go to home page">
+          <img class="brand-mark" src="{{ url_for('serve_logo') }}" alt="Lab Inventory logo" />
+        </a>
+        <h1>Lab Inventory Tracker</h1>
+      </div>
+      {% if admin_logged_in %}
+      <div class="top-actions">
+        <a class="admin-link" href="/admin">Admin portal</a>
+        <a class="admin-link logout-link" href="/logout">Logout</a>
+      </div>
+      {% else %}
+      <a class="admin-link" href="/login">Admin login</a>
+      {% endif %}
+    </header>
+
+    <main class="layout">
+      <section class="panel inventory-panel">
+        <div class="panel-header">
+          <h2>Available Parts</h2>
+          <span class="badge">{{ total_available }} available now</span>
+        </div>
+
+        {% if total_pages > 1 %}
+        <div class="pagination">
+          {% if current_page > 1 %}
+          <a href="{{ url_for('index', page=prev_page, search=search_value, closet=selected_closet, sort=selected_sort) }}">Previous</a>
+          {% endif %}
+          {% for page_number in page_numbers %}
+          <a href="{{ url_for('index', page=page_number, search=search_value, closet=selected_closet, sort=selected_sort) }}" class="page-number {% if page_number == current_page %}active{% endif %}">{{ page_number }}</a>
+          {% endfor %}
+          {% if current_page < total_pages %}
+          <a href="{{ url_for('index', page=next_page, search=search_value, closet=selected_closet, sort=selected_sort) }}">Next</a>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        <form class="inventory-controls" method="get" action="{{ url_for('index') }}">
+          <div class="filter-field">
+            <label for="itemSearch">Search</label>
+            <input id="itemSearch" name="search" type="search" value="{{ search_value }}" placeholder="Search item name" />
+          </div>
+          <div class="filter-field">
+            <label for="closetFilter">Closet</label>
+            <select id="closetFilter" name="closet">
+              <option value="">All closets</option>
+              {% for closet in closets %}
+              <option value="{{ closet }}" {% if closet|lower == selected_closet %}selected{% endif %}>{{ closet }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="filter-field">
+            <label for="sortSelect">Sort</label>
+            <select id="sortSelect" name="sort">
+              <option value="item-asc" {% if selected_sort == 'item-asc' %}selected{% endif %}>Item A–Z</option>
+              <option value="available-desc" {% if selected_sort == 'available-desc' %}selected{% endif %}>Available high to low</option>
+              <option value="closet-asc" {% if selected_sort == 'closet-asc' %}selected{% endif %}>Closet A–Z</option>
+              <option value="bin-asc" {% if selected_sort == 'bin-asc' %}selected{% endif %}>Bin A–Z</option>
+            </select>
+          </div>
+          <div class="filter-field filter-actions">
+            <button type="submit" class="primary-btn">Apply</button>
+            <a class="secondary-btn" href="{{ url_for('index') }}">Reset</a>
+          </div>
+        </form>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Closet</th>
+                <th>Bin</th>
+                <th>Available</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+              {% for item in items %}
+              <tr data-item="{{ item.item_name|lower }}" data-closet="{{ item.closet|lower }}" data-bin="{{ item.bin|lower }}" data-available="{{ item.available_now }}">
+                <td>
+                  <div class="item-with-action">
+                    <span>{{ item.item_name }}</span>
+                    <button type="button" class="borrow-btn" data-item-name="{{ item.item_name }}">Borrow</button>
+                  </div>
+                </td>
+                <td>{{ item.closet or 'Unknown' }}</td>
+                <td>{{ item.bin or 'Unassigned' }}</td>
+                <td>{{ item.available_now }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="4">No inventory records found.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel sidebar-panel">
+        <h2>Borrow Request</h2>
+        {% if request.args.get('error') %}
+        <div class="error-box">{{ request.args.get('error') }}</div>
+        {% endif %}
+        <form id="borrowForm" method="post" action="/borrow">
+          <label>
+            Part
+            <select name="item_name" required>
+              {% for item in all_items %}
+              <option value="{{ item.item_name }}" data-available="{{ item.available_now }}">{{ item.item_name }} ({{ item.available_now }} available)</option>
+              {% endfor %}
+            </select>
+          </label>
+
+          <label>
+            Quantity
+            <input type="number" name="quantity" min="1" value="1" required />
+          </label>
+
+          <label>
+            Borrower name
+            <input type="text" name="borrower_name" placeholder="e.g. Alex Johnson" required />
+          </label>
+
+          <label>
+            Student / staff ID
+            <input type="text" name="borrower_id" placeholder="Optional" />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="borrower_email" placeholder="name@example.com" required />
+          </label>
+
+          <label>
+            Purpose
+            <textarea name="purpose" rows="3" placeholder="Describe how the part will be used"></textarea>
+          </label>
+
+          <label>
+            Return date
+            <input type="date" name="return_date" required />
+          </label>
+
+          <p id="borrowValidationMessage" class="validation-message"></p>
+          <button id="borrowSubmitButton" type="submit" disabled>Submit request</button>
+        </form>
+      </aside>
+
+    </main>
+
+    <script>
+      const borrowForm = document.getElementById('borrowForm');
+      const itemSelect = borrowForm.querySelector('select[name="item_name"]');
+      const quantityInput = borrowForm.querySelector('input[name="quantity"]');
+      const returnDateInput = borrowForm.querySelector('input[name="return_date"]');
+      const borrowSubmitButton = document.getElementById('borrowSubmitButton');
+      const borrowValidationMessage = document.getElementById('borrowValidationMessage');
+      const itemButtons = document.querySelectorAll('.borrow-btn');
+
+      itemButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const itemName = button.dataset.itemName;
+          const selectedOption = [...itemSelect.options].find((option) => option.value === itemName);
+          if (!selectedOption) {
+            return;
+          }
+
+          itemSelect.value = itemName;
+          quantityInput.value = '1';
+          updateBorrowFormState();
+          borrowForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      returnDateInput.min = today.toISOString().slice(0, 10);
+
+      function updateBorrowFormState() {
+        const selectedOption = itemSelect.selectedOptions[0];
+        const available = Number(selectedOption?.dataset.available || 0);
+        const requestedQty = Number(quantityInput.value || 0);
+        const selectedDate = returnDateInput.value ? new Date(`${returnDateInput.value}T00:00:00`) : null;
+        const validQuantity = requestedQty > 0 && requestedQty <= available;
+        const isFutureDate = selectedDate && selectedDate > today;
+        const valid = validQuantity && isFutureDate;
+
+        quantityInput.max = Math.max(available, 1).toString();
+        borrowSubmitButton.disabled = !valid;
+
+        if (!valid) {
+          if (available <= 0) {
+            borrowValidationMessage.textContent = 'This item is not available for borrowing right now.';
+          } else if (!isFutureDate) {
+            borrowValidationMessage.textContent = 'Return date must be later than today.';
+          } else {
+            borrowValidationMessage.textContent = 'Quantity must be greater than 0 and no more than the available amount.';
+          }
+          borrowValidationMessage.style.color = '#d93f4c';
+        } else {
+          borrowValidationMessage.textContent = 'Ready to submit.';
+          borrowValidationMessage.style.color = '#0d9f6e';
+        }
+      }
+
+      itemSelect.addEventListener('change', updateBorrowFormState);
+      quantityInput.addEventListener('input', updateBorrowFormState);
+      returnDateInput.addEventListener('input', updateBorrowFormState);
+      updateBorrowFormState();
+    </script>
+  </body>
+</html>

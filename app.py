@@ -13,14 +13,19 @@ from pathlib import Path
 from flask import Flask, redirect, render_template, request, send_from_directory, session, url_for
 from openpyxl import load_workbook
 from werkzeug.exceptions import HTTPException
+from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+
+is_render = os.environ.get("RENDER") is not None
 app.config.update(
     SECRET_KEY=os.environ.get("LAB_SECRET_KEY") or os.urandom(32).hex(),
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE="Lax",
-    SESSION_COOKIE_SECURE=os.environ.get("LAB_SESSION_COOKIE_SECURE", "false").lower() == "true",
+    SESSION_COOKIE_SECURE=is_render or os.environ.get("LAB_SESSION_COOKIE_SECURE", "false").lower() == "true",
+    PREFERRED_URL_SCHEME="https" if is_render else "http",
 )
 
 ADMIN_USERNAME = (os.environ.get("LAB_ADMIN_USERNAME") or "admin").strip()
@@ -591,4 +596,5 @@ def return_request(request_id):
 if __name__ == "__main__":
     load_json(REQUESTS_PATH, [])
     load_json(BORROWED_PATH, [])
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", "5000"))
+    app.run(debug=False, host="0.0.0.0", port=port)

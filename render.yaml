@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: lab-management
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: LAB_SECRET_KEY
+        generateValue: true
+      - key: LAB_SESSION_COOKIE_SECURE
+        value: "true"
