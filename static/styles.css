@@ -115,6 +115,26 @@ h1, h2, h3, p {
   font-weight: 600;
 }
 
+.notice-box {
+  background: #eafaf0;
+  color: #146d46;
+  border: 1px solid #bfe7d0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.alert-banner {
+  background: #fff4d6;
+  border: 1px solid #f7d88d;
+  border-radius: 12px;
+  color: #7d5402;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
 .credential-note {
   background: #eef4ff;
   border: 1px solid var(--border);
@@ -228,6 +248,102 @@ h1, h2, h3, p {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 16px;
+}
+
+.inventory-edit-list {
+  display: grid;
+  gap: 16px;
+}
+
+.inventory-edit-card {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.zero-stock-card {
+  border-color: #f4be9b;
+  background: #fffaf5;
+}
+
+.inventory-edit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.inventory-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.inventory-edit-grid .full-span {
+  grid-column: 1 / -1;
+}
+
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-chip.success {
+  background: rgba(13, 159, 110, 0.12);
+  color: #0b7f5d;
+}
+
+.status-chip.danger {
+  background: rgba(217, 63, 76, 0.12);
+  color: #b92d39;
+}
+
+.overdue-card {
+  border-color: rgba(217, 63, 76, 0.42);
+  background: rgba(217, 63, 76, 0.04);
+}
+
+.overdue-label {
+  margin-top: 8px;
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.activity-log {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.activity-log li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.inline-action-form {
+  margin-bottom: 18px;
+}
+
+.inline-action-form .secondary-btn {
+  width: auto;
+}
+
+.activity-log small {
+  color: var(--muted);
 }
 
 .stat-card span {
@@ -375,6 +491,10 @@ button:hover {
   .inventory-controls {
     grid-template-columns: 1fr 1fr;
   }
+
+  .inventory-edit-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 640px) {
@@ -387,7 +507,9 @@ button:hover {
     width: 100%;
   }
 
-  .inventory-controls {
+  .inventory-controls,
+  .inventory-edit-grid,
+  .stats-grid {
     grid-template-columns: 1fr;
   }
 

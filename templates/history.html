@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <header class="topbar admin-topbar">
+      <div class="brand-wrap">
+        <a class="brand-link" href="{{ url_for('index') }}" aria-label="Go to home page">
+          <img class="brand-mark" src="{{ url_for('serve_logo') }}" alt="Lab Inventory logo" />
+        </a>
+        <h1>Inventory History</h1>
+      </div>
+      <div class="top-actions">
+        <a class="admin-link" href="/admin">Admin dashboard</a>
+        <a class="admin-link" href="/admin/borrowed">Borrowed items</a>
+        <a class="admin-link logout-link" href="/logout">Logout</a>
+      </div>
+    </header>
+
+    <main class="admin-layout">
+      <section class="panel full-width-panel">
+        <div class="panel-header">
+          <h2>Recent Activity Log</h2>
+        </div>
+
+        {% if audit_events %}
+        <ul class="activity-log">
+          {% for event in audit_events %}
+          <li>
+            <strong>{{ event.timestamp }}</strong>
+            <span>{{ event.message }}</span>
+            {% if event.details %}
+            <small>{{ event.details }}</small>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty-state">No activity has been recorded yet.</p>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>

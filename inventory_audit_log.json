@@ -1,0 +1,66 @@
+[
+  {
+    "timestamp": "2026-09-23 07:20:02",
+    "action": "borrow_request_created",
+    "message": "Borrow request created for 10 of Ethernet Cables by Full Amount User.",
+    "details": {
+      "item_name": "Ethernet Cables",
+      "qty": 10,
+      "borrower_name": "Full Amount User",
+      "borrower_email": "test@example.com"
+    }
+  },
+  {
+    "timestamp": "2026-09-23 07:20:04",
+    "action": "borrow_request_approved",
+    "message": "Approved borrow request req-1 for 10 of Ethernet Cables.",
+    "details": {
+      "request_id": "req-1",
+      "item_name": "Ethernet Cables",
+      "qty": 10,
+      "borrower_name": "Full Amount User"
+    }
+  },
+  {
+    "timestamp": "2026-09-23 07:20:05",
+    "action": "borrow_request_cancelled",
+    "message": "Borrow request final-approved for Ethernet Cables was cancelled.",
+    "details": {
+      "request_id": "final-approved",
+      "item_name": "Ethernet Cables",
+      "borrower_name": "Test User"
+    }
+  },
+  {
+    "timestamp": "2026-09-23 07:21:37",
+    "action": "borrow_request_created",
+    "message": "Borrow request created for 10 of Ethernet Cables by Full Amount User.",
+    "details": {
+      "item_name": "Ethernet Cables",
+      "qty": 10,
+      "borrower_name": "Full Amount User",
+      "borrower_email": "test@example.com"
+    }
+  },
+  {
+    "timestamp": "2026-09-23 07:21:37",
+    "action": "borrow_request_approved",
+    "message": "Approved borrow request req-1 for 10 of Ethernet Cables.",
+    "details": {
+      "request_id": "req-1",
+      "item_name": "Ethernet Cables",
+      "qty": 10,
+      "borrower_name": "Full Amount User"
+    }
+  },
+  {
+    "timestamp": "2026-09-23 07:21:38",
+    "action": "borrow_request_cancelled",
+    "message": "Borrow request final-approved for Ethernet Cables was cancelled.",
+    "details": {
+      "request_id": "final-approved",
+      "item_name": "Ethernet Cables",
+      "borrower_name": "Test User"
+    }
+  }
+]

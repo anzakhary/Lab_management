@@ -17,11 +17,111 @@
       <div class="top-actions">
         <a class="admin-link" href="/">Back to inventory</a>
         <a class="admin-link" href="/admin/borrowed">Borrowed items</a>
+        <a class="admin-link" href="/admin/history">History</a>
         <a class="admin-link logout-link" href="/logout">Logout</a>
       </div>
     </header>
 
     <main class="admin-layout">
+      <section class="panel full-width-panel">
+        <div class="panel-header">
+          <h2>Operations Overview</h2>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span>Pending</span>
+            <strong>{{ metrics.pending }}</strong>
+          </div>
+          <div class="stat-card">
+            <span>Approved</span>
+            <strong>{{ metrics.approved }}</strong>
+          </div>
+          <div class="stat-card">
+            <span>Overdue</span>
+            <strong>{{ metrics.overdue }}</strong>
+          </div>
+          <div class="stat-card">
+            <span>Returned</span>
+            <strong>{{ metrics.returned }}</strong>
+          </div>
+          <div class="stat-card">
+            <span>Zero-stock items</span>
+            <strong>{{ metrics.zero_stock }}</strong>
+          </div>
+          <div class="stat-card">
+            <span>Total inventory</span>
+            <strong>{{ metrics.total_items }}</strong>
+          </div>
+        </div>
+
+        {% if zero_stock_alerts %}
+        <div class="alert-banner">
+          <strong>Attention:</strong>
+          {% for alert in zero_stock_alerts %}
+            {{ alert.item_name }}{% if not loop.last %}, {% endif %}
+          {% endfor %}
+          are at zero stock.
+        </div>
+        {% endif %}
+      </section>
+
+      <section class="panel full-width-panel">
+        <div class="panel-header">
+          <h2>Inventory Manager</h2>
+        </div>
+
+        {% if inventory_rows %}
+        <div class="inventory-edit-list">
+          {% for item in inventory_rows %}
+          <div class="inventory-edit-card {% if item.available_qty <= 0 %}zero-stock-card{% endif %}">
+            <div class="inventory-edit-header">
+              <h3>{{ item.item_name }}</h3>
+              {% if item.available_qty <= 0 %}
+              <span class="status-chip danger">Zero stock</span>
+              {% else %}
+              <span class="status-chip success">Available</span>
+              {% endif %}
+            </div>
+            <form method="post" action="{{ url_for('update_inventory_item', item_name=item.item_name) }}">
+              <div class="inventory-edit-grid">
+                <label>
+                  Code
+                  <input type="text" name="code" value="{{ item.code }}" />
+                </label>
+                <label>
+                  Available Qty
+                  <input type="number" name="available_qty" value="{{ item.available_qty }}" min="0" required />
+                </label>
+                <label>
+                  Total Qty
+                  <input type="number" name="total_qty" value="{{ item.total_qty }}" min="0" required />
+                </label>
+                <label>
+                  Bin
+                  <input type="text" name="bin" value="{{ item.bin }}" />
+                </label>
+                <label>
+                  Closet
+                  <input type="text" name="closet" value="{{ item.closet }}" />
+                </label>
+                <label>
+                  Condition
+                  <input type="text" name="condition" value="{{ item.condition }}" />
+                </label>
+                <label class="full-span">
+                  Notes
+                  <textarea name="notes" rows="2">{{ item.notes }}</textarea>
+                </label>
+              </div>
+              <button type="submit" class="primary-btn">Save changes</button>
+            </form>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+
       <section class="panel">
         <div class="panel-header">
           <h2>Pending Requests</h2>
@@ -30,6 +130,13 @@
         {% if admin_error %}
         <div class="error-box">{{ admin_error }}</div>
         {% endif %}
+        {% if admin_notice %}
+        <div class="notice-box">{{ admin_notice }}</div>
+        {% endif %}
+
+        <form method="post" action="{{ url_for('admin_send_reminders') }}" class="inline-action-form">
+          <button type="submit" class="secondary-btn">Send return reminders</button>
+        </form>
 
         {% if pending %}
         <div class="request-list">
@@ -70,13 +177,16 @@
         {% if approved %}
         <div class="request-list">
           {% for request in approved %}
-          <div class="request-card approved-card">
+          <div class="request-card approved-card {% if request.id in overdue_ids %}overdue-card{% endif %}">
             <div>
               <h3>{{ request.item_name }} ({{ request.qty }})</h3>
               <p><strong>Borrower:</strong> {{ request.borrower_name }}</p>
               <p><strong>Email:</strong> {{ request.borrower_email or 'Not provided' }}</p>
               <p><strong>Approved:</strong> {{ request.approved_at }}</p>
               <p><strong>Return by:</strong> {{ request.return_date or 'Not set' }}</p>
+              {% if request.id in overdue_ids %}
+              <p class="overdue-label">Overdue</p>
+              {% endif %}
             </div>
             <div class="request-actions">
               <form method="post" action="{{ url_for('return_request', request_id=request.id) }}">
@@ -91,6 +201,25 @@
         </div>
         {% else %}
         <p class="empty-state">No approved borrow records yet.</p>
+        {% endif %}
+      </section>
+
+      <section class="panel full-width-panel">
+        <div class="panel-header">
+          <h2>Recent Activity</h2>
+        </div>
+
+        {% if audit_events %}
+        <ul class="activity-log">
+          {% for event in audit_events %}
+          <li>
+            <strong>{{ event.timestamp }}</strong>
+            <span>{{ event.message }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty-state">No inventory events recorded yet.</p>
         {% endif %}
       </section>
     </main>

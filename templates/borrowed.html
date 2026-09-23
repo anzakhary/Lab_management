@@ -28,7 +28,7 @@
         {% if approved %}
         <div class="request-list">
           {% for request in approved %}
-          <div class="request-card approved-card">
+          <div class="request-card approved-card {% if request.id in overdue_ids %}overdue-card{% endif %}">
             <div>
               <h3>{{ request.item_name }} ({{ request.qty }})</h3>
               <p><strong>Borrower:</strong> {{ request.borrower_name }}</p>
@@ -36,6 +36,9 @@
               <p><strong>Location:</strong> {{ request.location }}</p>
               <p><strong>Approved:</strong> {{ request.approved_at }}</p>
               <p><strong>Return by:</strong> {{ request.return_date or 'Not set' }}</p>
+              {% if request.id in overdue_ids %}
+              <p class="overdue-label">Overdue</p>
+              {% endif %}
             </div>
             <div class="request-actions">
               <form method="post" action="{{ url_for('return_request', request_id=request.id) }}">

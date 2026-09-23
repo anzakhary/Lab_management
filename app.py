@@ -36,6 +36,7 @@ ROOT = Path(__file__).resolve().parent
 WORKBOOK_PATH = ROOT / "Lab_Inventory_Tracker (2).xlsx"
 REQUESTS_PATH = ROOT / "borrow_requests.json"
 BORROWED_PATH = ROOT / "borrowed_parts.json"
+AUDIT_LOG_PATH = ROOT / "inventory_audit_log.json"
 LOG_PATH = ROOT / "lab_inventory.log"
 MAIL_SERVER = os.environ.get("MAIL_SERVER", "smtp.gmail.com")
 MAIL_PORT = int(os.environ.get("MAIL_PORT", "587"))
@@ -77,6 +78,43 @@ def load_json(path: Path, default):
 
 def save_json(path: Path, payload):
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+
+def get_zero_stock_alerts(inventory_items):
+    alerts = []
+    for item in inventory_items:
+        available = max(0, normalized_int(item.get("available_qty")))
+        if available <= 0:
+            alerts.append(
+                {
+                    "item_name": item.get("item_name") or "Unknown item",
+                    "available_qty": available,
+                    "bin": item.get("bin") or "Unassigned",
+                    "closet": item.get("closet") or "Unknown",
+                    "code": item.get("code") or "",
+                }
+            )
+    return alerts
+
+
+def get_audit_events(limit=25):
+    events = load_json(AUDIT_LOG_PATH, [])
+    if limit:
+        return list(reversed(events))[:limit]
+    return list(reversed(events))
+
+
+def append_audit_event(action, message, details=None):
+    events = load_json(AUDIT_LOG_PATH, [])
+    event = {
+        "timestamp": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
+        "action": action,
+        "message": message,
+        "details": details or {},
+    }
+    events.append(event)
+    save_json(AUDIT_LOG_PATH, events)
+    return event
 
 
 def normalized_int(value):
@@ -149,6 +187,41 @@ def load_locations():
     return locations
 
 
+def save_inventory(inventory_items):
+    workbook = load_workbook(WORKBOOK_PATH, data_only=False)
+    sheet = workbook["Inventory"]
+    item_lookup = {}
+
+    for row in sheet.iter_rows(min_row=2, values_only=False):
+        item_name = row[0].value if row[0] else None
+        if item_name is None:
+            continue
+        item_lookup[str(item_name).strip().lower()] = row
+
+    for item in inventory_items:
+        item_name = (item.get("item_name") or "").strip()
+        if not item_name:
+            continue
+        target_row = item_lookup.get(item_name.lower())
+        values = [
+            item_name,
+            item.get("code") or "",
+            item.get("available_qty", 0),
+            item.get("bin") or "Unassigned",
+            item.get("closet") or "Unknown",
+            item.get("condition") or "Unknown",
+            item.get("notes") or "",
+            item.get("total_qty", 0),
+        ]
+        if target_row is not None:
+            for cell, value in zip(target_row, values):
+                cell.value = value
+        else:
+            sheet.append(values)
+
+    workbook.save(WORKBOOK_PATH)
+
+
 def get_status_summary(inventory_items):
     approved_requests = [
         req for req in load_json(REQUESTS_PATH, []) if req.get("status") == "approved"
@@ -201,6 +274,69 @@ def is_valid_future_date(date_string):
         return date.fromisoformat(date_string) > date.today()
     except ValueError:
         return False
+
+
+def get_overdue_requests(requests=None):
+    request_list = requests if requests is not None else load_json(REQUESTS_PATH, [])
+    overdue = []
+    today = date.today()
+    for req in request_list:
+        if req.get("status") != "approved":
+            continue
+        due_date = req.get("return_date") or ""
+        if not due_date:
+            continue
+        try:
+            if date.fromisoformat(due_date) < today:
+                overdue.append(req)
+        except ValueError:
+            continue
+    return overdue
+
+
+def get_reminder_candidates(requests=None, days_ahead=3):
+    request_list = requests if requests is not None else load_json(REQUESTS_PATH, [])
+    candidates = []
+    today = date.today()
+    for req in request_list:
+        if req.get("status") != "approved":
+            continue
+        due_date = req.get("return_date") or ""
+        if not due_date:
+            continue
+        try:
+            due = date.fromisoformat(due_date)
+        except ValueError:
+            continue
+        delta_days = (due - today).days
+        if delta_days <= days_ahead and delta_days >= -7:
+            candidates.append(req)
+    return candidates
+
+
+def send_return_reminders(days_ahead=3):
+    requests = load_json(REQUESTS_PATH, [])
+    reminder_count = 0
+    sent_ids = []
+    for req in get_reminder_candidates(requests, days_ahead=days_ahead):
+        borrower_email = (req.get("borrower_email") or "").strip()
+        if not borrower_email:
+            continue
+        due_date = req.get("return_date") or ""
+        message = (
+            f"Dear {req.get('borrower_name') or 'Borrower'},\n\n"
+            f"This is a reminder that the borrowed item {req.get('item_name')} is due on {due_date}. "
+            f"Please return it promptly."
+        )
+        if send_email(borrower_email, "Return Reminder", message):
+            reminder_count += 1
+            sent_ids.append(req.get("id"))
+            append_audit_event(
+                "return_reminder_sent",
+                f"Reminder sent for {req.get('item_name')} to {req.get('borrower_name') or 'borrower'}.",
+                {"request_id": req.get("id"), "item_name": req.get("item_name"), "borrower_email": borrower_email},
+            )
+    return reminder_count, sent_ids
 
 
 def build_email_body(subject, message_body, sender_name="Lab Inventory Management"):
@@ -322,17 +458,32 @@ def index():
 
     search_query = (request.args.get("search") or "").strip().lower()
     closet_filter = (request.args.get("closet") or "").strip().lower()
+    condition_filter = (request.args.get("condition") or "").strip().lower()
+    availability_filter = (request.args.get("availability") or "all").strip().lower()
     sort_option = request.args.get("sort") or "item-asc"
 
     filtered_items = visible_items
     if search_query:
         filtered_items = [
-            item for item in filtered_items if search_query in (item.get("item_name") or "").lower()
+            item for item in filtered_items
+            if search_query in (item.get("item_name") or "").lower()
+            or search_query in (item.get("code") or "").lower()
+            or search_query in (item.get("bin") or "").lower()
+            or search_query in (item.get("closet") or "").lower()
+            or search_query in (item.get("notes") or "").lower()
         ]
     if closet_filter:
         filtered_items = [
             item for item in filtered_items if (item.get("closet") or "").lower() == closet_filter
         ]
+    if condition_filter:
+        filtered_items = [
+            item for item in filtered_items if (item.get("condition") or "").lower() == condition_filter
+        ]
+    if availability_filter == "zero":
+        filtered_items = [item for item in filtered_items if item.get("available_now", 0) <= 0]
+    elif availability_filter == "available":
+        filtered_items = [item for item in filtered_items if item.get("available_now", 0) > 0]
 
     if sort_option == "available-desc":
         filtered_items = sorted(filtered_items, key=lambda item: item["available_now"], reverse=True)
@@ -344,6 +495,7 @@ def index():
         filtered_items = sorted(filtered_items, key=lambda item: (item.get("item_name") or "").lower())
 
     total_items, total_available, _ = get_status_summary(inventory_items)
+    zero_stock_alerts = get_zero_stock_alerts(visible_items)
     per_page = 10
     total_pages = max(1, (len(filtered_items) + per_page - 1) // per_page)
     page = max(1, int(request.args.get("page", 1)))
@@ -356,6 +508,7 @@ def index():
     next_page = min(total_pages, page + 2)
 
     closet_values = sorted({item.get("closet") for item in visible_items if item.get("closet")})
+    condition_values = sorted({item.get("condition") for item in visible_items if item.get("condition")})
 
     return render_template(
         "index.html",
@@ -372,8 +525,12 @@ def index():
         next_page=next_page,
         search_value=search_query,
         selected_closet=closet_filter,
+        selected_condition=condition_filter,
+        selected_availability=availability_filter,
         selected_sort=sort_option,
         closets=closet_values,
+        conditions=condition_values,
+        zero_stock_alerts=zero_stock_alerts,
     )
 
 
@@ -423,6 +580,11 @@ def submit_borrow_request():
     }
     request_list.append(new_request)
     save_json(REQUESTS_PATH, request_list)
+    append_audit_event(
+        "borrow_request_created",
+        f"Borrow request created for {quantity} of {item['item_name']} by {borrower_name}.",
+        {"item_name": item["item_name"], "qty": quantity, "borrower_name": borrower_name, "borrower_email": borrower_email},
+    )
     send_email(
         borrower_email,
         "Borrow Request Submitted",
@@ -464,8 +626,78 @@ def admin():
     requests = load_json(REQUESTS_PATH, [])
     pending = [req for req in requests if req.get("status") == "pending"]
     approved = [req for req in requests if req.get("status") == "approved"]
+    returned = [req for req in requests if req.get("status") == "returned"]
+    overdue = get_overdue_requests(approved)
+    inventory_items = load_inventory()
+    zero_stock_alerts = get_zero_stock_alerts(inventory_items)
     admin_error = session.pop("admin_error", None)
-    return render_template("admin.html", pending=pending, approved=approved, admin_error=admin_error)
+    admin_notice = session.pop("admin_notice", None)
+    metrics = {
+        "pending": len(pending),
+        "approved": len(approved),
+        "overdue": len(overdue),
+        "returned": len(returned),
+        "zero_stock": len(zero_stock_alerts),
+        "total_items": len(inventory_items),
+    }
+    return render_template(
+        "admin.html",
+        pending=pending,
+        approved=approved,
+        returned=returned,
+        admin_error=admin_error,
+        admin_notice=admin_notice,
+        metrics=metrics,
+        inventory_rows=inventory_items,
+        zero_stock_alerts=zero_stock_alerts,
+        overdue_ids={req.get("id") for req in overdue},
+        audit_events=get_audit_events(10),
+    )
+
+
+@app.post("/admin/remind")
+def admin_send_reminders():
+    if not is_admin_session():
+        return redirect(url_for("login_page"))
+
+    sent_count, _ = send_return_reminders(days_ahead=3)
+    session["admin_notice"] = f"Sent {sent_count} return reminder email(s)."
+    return redirect(url_for("admin"))
+
+
+@app.get("/admin/history")
+def history_page():
+    if not is_admin_session():
+        return redirect(url_for("login_page"))
+    return render_template("history.html", audit_events=get_audit_events(0))
+
+
+@app.post("/admin/update_item/<item_name>")
+def update_inventory_item(item_name):
+    if not is_admin_session():
+        return redirect(url_for("login_page"))
+
+    inventory_items = load_inventory()
+    item = next((entry for entry in inventory_items if entry["item_name"].lower() == item_name.lower()), None)
+    if item is None:
+        session["admin_error"] = f"Inventory item '{item_name}' could not be found."
+        return redirect(url_for("admin"))
+
+    item["available_qty"] = normalized_int(request.form.get("available_qty"))
+    item["total_qty"] = normalized_int(request.form.get("total_qty"))
+    item["bin"] = (request.form.get("bin") or "Unassigned").strip() or "Unassigned"
+    item["closet"] = (request.form.get("closet") or "Unknown").strip() or "Unknown"
+    item["condition"] = (request.form.get("condition") or "Unknown").strip() or "Unknown"
+    item["notes"] = (request.form.get("notes") or "").strip()
+    item["code"] = (request.form.get("code") or "").strip()
+
+    save_inventory(inventory_items)
+    append_audit_event(
+        "inventory_updated",
+        f"Updated inventory for {item_name}.",
+        {"item_name": item_name, "available_qty": item["available_qty"], "total_qty": item["total_qty"]},
+    )
+    return redirect(url_for("admin"))
 
 
 @app.post("/admin/cancel/<request_id>")
@@ -476,19 +708,26 @@ def cancel_request(request_id):
     requests = load_json(REQUESTS_PATH, [])
     borrower_email = ""
     borrower_name = ""
+    cancelled_item = "the selected item"
     for request in requests:
         if request.get("id") == request_id:
             borrower_email = request.get("borrower_email") or ""
             borrower_name = request.get("borrower_name") or "Borrower"
+            cancelled_item = request.get("item_name") or cancelled_item
             request["status"] = "cancelled"
             request["cancelled_at"] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
             break
     save_json(REQUESTS_PATH, requests)
     save_json(BORROWED_PATH, [req for req in requests if req.get("status") == "approved"])
+    append_audit_event(
+        "borrow_request_cancelled",
+        f"Borrow request {request_id} for {cancelled_item} was cancelled.",
+        {"request_id": request_id, "item_name": cancelled_item, "borrower_name": borrower_name},
+    )
     send_email(
         borrower_email,
         "Borrow Request Cancelled",
-        f"Dear {borrower_name},\n\nYour borrow request for {request.get('item_name', 'the selected item')} has been cancelled.",
+        f"Dear {borrower_name},\n\nYour borrow request for {cancelled_item} has been cancelled.",
     )
     return redirect(url_for("admin"))
 
@@ -528,6 +767,11 @@ def approve_request(request_id):
             break
     save_json(REQUESTS_PATH, requests)
     save_json(BORROWED_PATH, [req for req in requests if req.get("status") == "approved"])
+    append_audit_event(
+        "borrow_request_approved",
+        f"Approved borrow request {request_id} for {qty} of {item_name}.",
+        {"request_id": request_id, "item_name": item_name, "qty": qty, "borrower_name": borrower_name},
+    )
     send_email(
         borrower_email,
         "Borrow Request Approved",
@@ -545,18 +789,25 @@ def reject_request(request_id):
     borrower_email = ""
     borrower_name = ""
     updated = []
+    rejected_item = "the requested item"
     for request in requests:
         if request.get("id") == request_id:
             borrower_email = request.get("borrower_email") or ""
             borrower_name = request.get("borrower_name") or "Borrower"
+            rejected_item = request.get("item_name") or rejected_item
             request["status"] = "rejected"
         updated.append(request)
     save_json(REQUESTS_PATH, updated)
     save_json(BORROWED_PATH, [req for req in updated if req.get("status") == "approved"])
+    append_audit_event(
+        "borrow_request_rejected",
+        f"Rejected borrow request {request_id} for {rejected_item}.",
+        {"request_id": request_id, "item_name": rejected_item, "borrower_name": borrower_name},
+    )
     send_email(
         borrower_email,
         "Borrow Request Rejected",
-        f"Dear {borrower_name},\n\nYour request for {next((req.get('item_name') for req in updated if req.get('id') == request_id), 'the requested item')} has been rejected by the admin.",
+        f"Dear {borrower_name},\n\nYour request for {rejected_item} has been rejected by the admin.",
     )
     return redirect(url_for("admin"))
 
@@ -569,7 +820,8 @@ def borrowed_page():
     requests = load_json(REQUESTS_PATH, [])
     approved = [req for req in requests if req.get("status") == "approved"]
     returned = [req for req in requests if req.get("status") == "returned"]
-    return render_template("borrowed.html", approved=approved, returned=returned)
+    overdue_ids = {req.get("id") for req in get_overdue_requests(approved)}
+    return render_template("borrowed.html", approved=approved, returned=returned, overdue_ids=overdue_ids)
 
 
 @app.post("/admin/return/<request_id>")
@@ -582,6 +834,11 @@ def return_request(request_id):
         if request.get("id") == request_id:
             request["status"] = "returned"
             request["returned_at"] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+            append_audit_event(
+                "borrow_item_returned",
+                f"Returned item {request.get('item_name')} for {request.get('borrower_name') or 'Borrower'}.",
+                {"request_id": request_id, "item_name": request.get("item_name"), "borrower_name": request.get("borrower_name")},
+            )
             send_email(
                 request.get("borrower_email") or "",
                 "Borrow Return Confirmed",

@@ -657,3 +657,68 @@ werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on 
 2026-09-21 15:34:19,166 INFO REQUEST GET /
 2026-09-21 15:34:20,296 INFO REQUEST GET /static/styles.css
 2026-09-21 15:34:20,298 INFO REQUEST GET /logo.svg
+2026-09-23 09:19:57,953 INFO REQUEST GET /admin
+2026-09-23 09:20:01,386 INFO REQUEST GET /
+2026-09-23 09:20:02,193 INFO REQUEST GET /admin
+2026-09-23 09:20:02,195 INFO REQUEST POST /login
+2026-09-23 09:20:02,206 INFO REQUEST POST /login
+2026-09-23 09:20:02,447 INFO REQUEST POST /borrow
+2026-09-23 09:20:02,455 INFO REQUEST POST /borrow
+2026-09-23 09:20:02,853 INFO Preparing to send email to test@example.com | Subject: Borrow Request Submitted
+2026-09-23 09:20:02,854 INFO [EMAIL] To: test@example.com
+Subject: Borrow Request Submitted
+Dear Full Amount User,
+
+Your request for 10 of Ethernet Cables has been submitted and is awaiting admin approval.
+Return date: 2030-12-31.
+
+2026-09-23 09:20:02,874 INFO REQUEST GET /admin
+2026-09-23 09:20:03,460 INFO REQUEST POST /admin/approve/req-1
+2026-09-23 09:20:04,112 INFO Preparing to send email to test@example.com | Subject: Borrow Request Approved
+2026-09-23 09:20:04,112 INFO [EMAIL] To: test@example.com
+Subject: Borrow Request Approved
+Dear Full Amount User,
+
+Your request for 10 of Ethernet Cables has been approved.
+Please return it by 2030-12-31.
+
+2026-09-23 09:20:04,127 INFO REQUEST POST /admin/approve/limit-pending
+2026-09-23 09:20:04,583 INFO REQUEST GET /admin
+2026-09-23 09:20:05,276 INFO REQUEST GET /admin/borrowed
+2026-09-23 09:20:05,312 INFO REQUEST POST /admin/cancel/final-approved
+2026-09-23 09:20:05,348 WARNING Email send skipped because no recipient was provided. Subject: Borrow Request Cancelled
+2026-09-23 09:20:56,257 INFO REQUEST GET /admin
+2026-09-23 09:20:56,263 INFO REQUEST POST /login
+2026-09-23 09:21:32,806 INFO REQUEST GET /admin
+2026-09-23 09:21:32,807 INFO REQUEST POST /login
+2026-09-23 09:21:32,903 INFO REQUEST GET /admin/history
+2026-09-23 09:21:32,922 INFO REQUEST POST /admin/remind
+2026-09-23 09:21:36,436 INFO REQUEST GET /
+2026-09-23 09:21:36,859 INFO REQUEST GET /admin
+2026-09-23 09:21:36,861 INFO REQUEST POST /login
+2026-09-23 09:21:36,871 INFO REQUEST POST /login
+2026-09-23 09:21:36,999 INFO REQUEST POST /borrow
+2026-09-23 09:21:37,004 INFO REQUEST POST /borrow
+2026-09-23 09:21:37,198 INFO Preparing to send email to test@example.com | Subject: Borrow Request Submitted
+2026-09-23 09:21:37,198 INFO [EMAIL] To: test@example.com
+Subject: Borrow Request Submitted
+Dear Full Amount User,
+
+Your request for 10 of Ethernet Cables has been submitted and is awaiting admin approval.
+Return date: 2030-12-31.
+
+2026-09-23 09:21:37,211 INFO REQUEST GET /admin
+2026-09-23 09:21:37,459 INFO REQUEST POST /admin/approve/req-1
+2026-09-23 09:21:37,706 INFO Preparing to send email to test@example.com | Subject: Borrow Request Approved
+2026-09-23 09:21:37,706 INFO [EMAIL] To: test@example.com
+Subject: Borrow Request Approved
+Dear Full Amount User,
+
+Your request for 10 of Ethernet Cables has been approved.
+Please return it by 2030-12-31.
+
+2026-09-23 09:21:37,717 INFO REQUEST POST /admin/approve/limit-pending
+2026-09-23 09:21:37,915 INFO REQUEST GET /admin
+2026-09-23 09:21:38,167 INFO REQUEST GET /admin/borrowed
+2026-09-23 09:21:38,180 INFO REQUEST POST /admin/cancel/final-approved
+2026-09-23 09:21:38,192 WARNING Email send skipped because no recipient was provided. Subject: Borrow Request Cancelled
